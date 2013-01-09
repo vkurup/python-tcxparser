@@ -1,4 +1,8 @@
-from lxml import objectify, etree
+"Simple parser for Garmin TCX files."
+
+from lxml import objectify
+
+__version__ = '0.1.0'
 
 
 class TcxParser:

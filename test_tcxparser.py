@@ -1,5 +1,5 @@
 import unittest
-from tcx import TcxParser
+from tcxparser import TcxParser
 
 
 class TestParseTcx(unittest.TestCase):
