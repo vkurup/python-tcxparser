@@ -2,7 +2,7 @@
 
 from lxml import objectify
 
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 
 
 class TcxParser:
@@ -14,11 +14,11 @@ class TcxParser:
 
     @property
     def latitude(self):
-        return self.activity.Lap.Track.Trackpoint.Position.LatitudeDegrees
+        return self.activity.Lap.Track.Trackpoint.Position.LatitudeDegrees.pyval
 
     @property
     def longitude(self):
-        return self.activity.Lap.Track.Trackpoint.Position.LongitudeDegrees
+        return self.activity.Lap.Track.Trackpoint.Position.LongitudeDegrees.pyval
 
     @property
     def activity_type(self):
@@ -26,11 +26,11 @@ class TcxParser:
 
     @property
     def completed_at(self):
-        return self.activity.Lap[-1].Track.Trackpoint[-1].Time
+        return self.activity.Lap[-1].Track.Trackpoint[-1].Time.pyval
 
     @property
     def distance(self):
-        return self.activity.Lap[-1].Track.Trackpoint[-2].DistanceMeters
+        return self.activity.Lap[-1].Track.Trackpoint[-2].DistanceMeters.pyval
 
     @property
     def distance_units(self):
