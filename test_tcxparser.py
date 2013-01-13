@@ -1,12 +1,12 @@
 import unittest
-from tcxparser import TcxParser
+from tcxparser import TCXParser
 
 
-class TestParseTcx(unittest.TestCase):
+class TestParseTCX(unittest.TestCase):
 
     def setUp(self):
         tcx_file = 'test.tcx'
-        self.tcx = TcxParser(tcx_file)
+        self.tcx = TCXParser(tcx_file)
 
     def test_latitude_is_correct(self):
         self.assertEquals(self.tcx.latitude, 35.951880198)

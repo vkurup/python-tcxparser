@@ -5,7 +5,7 @@ from lxml import objectify
 __version__ = '0.4.0'
 
 
-class TcxParser:
+class TCXParser:
 
     def __init__(self, tcx_file):
         tree = objectify.parse(tcx_file)
