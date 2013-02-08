@@ -2,8 +2,6 @@
 
 from lxml import objectify
 
-__version__ = '0.4.0'
-
 
 class TCXParser:
 

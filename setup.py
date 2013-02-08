@@ -1,5 +1,6 @@
 from setuptools import setup
-from tcxparser import __version__
+
+__version__ = '0.5.0'
 
 setup(
     name='python-tcxparser',
