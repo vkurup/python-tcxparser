@@ -20,7 +20,7 @@ Data extracted:
 ## Usage
 
     >>> import tcxparser
-    >>> tcx = tcxparser.TcxParser('/home/vinod/Downloads/20121226-212953.tcx')
+    >>> tcx = tcxparser.TCXParser('/home/vinod/Downloads/20121226-212953.tcx')
     >>> # Duration of workout in seconds
     ... tcx.duration
     1992.78
