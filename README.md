@@ -12,6 +12,8 @@ Data extracted:
  - distance of workout (in meters)
  - duration of workout (in seconds)
  - calories burned during workout (as estimated by device)
+ - average, max and min heart rate during workout
+ - number of laps in the workout
 
 ## Installation
 
