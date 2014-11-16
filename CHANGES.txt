@@ -1,3 +1,5 @@
+v0.5.1, 2014-11-16 -- Added heart rate data support
+
 v0.3.0, 2013-01-09 -- Changed methods to properties
 
 v0.1.0, 2013-01-07 -- Initial release.
