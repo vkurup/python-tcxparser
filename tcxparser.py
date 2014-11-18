@@ -2,6 +2,7 @@
 
 from lxml import objectify
 
+namespace = 'http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2'
 
 class TCXParser:
 
@@ -9,14 +10,9 @@ class TCXParser:
         tree = objectify.parse(tcx_file)
         self.root = tree.getroot()
         self.activity = self.root.Activities.Activity
-
+        
     def hr_values(self):
-        hr = []
-        for lap in self.activity.Lap:
-            for trackpoint in lap.Track.Trackpoint:
-                if hasattr(trackpoint, 'HeartRateBpm'):
-                    hr.append(trackpoint.HeartRateBpm.Value.pyval)
-        return hr
+        return [int(x.text) for x in self.root.xpath('//ns:HeartRateBpm/ns:Value', namespaces={'ns': namespace})]
 
     @property
     def latitude(self):
@@ -57,14 +53,17 @@ class TCXParser:
 
     @property
     def hr_avg(self):
+        """Average heart rate of the workout"""
         hr_data = self.hr_values()
         return sum(hr_data)/len(hr_data)
         
     @property
     def hr_max(self):
+        """Minimum heart rate of the workout"""
         return max(self.hr_values())
         
     @property
     def hr_min(self):
+        """Minimum heart rate of the workout"""
         return min(self.hr_values())
         
