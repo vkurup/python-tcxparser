@@ -49,10 +49,6 @@ class TCXParser:
         return sum(lap.Calories for lap in self.activity.Lap)
         
     @property
-    def lap_count(self):
-        return len(self.activity.Lap)
-
-    @property
     def hr_avg(self):
         """Average heart rate of the workout"""
         hr_data = self.hr_values()

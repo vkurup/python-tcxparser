@@ -13,7 +13,7 @@ Data extracted:
  - duration of workout (in seconds)
  - calories burned during workout (as estimated by device)
  - average, max and min heart rate during workout
- - number of laps in the workout
+ - average pace during workout
 
 ## Installation
 

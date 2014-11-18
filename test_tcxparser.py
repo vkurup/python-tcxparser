@@ -32,9 +32,6 @@ class TestParseTCX(unittest.TestCase):
     def test_calories_is_correct(self):
         self.assertEquals(self.tcx.calories, 379)
         
-    def test_lap_count(self):
-        self.assertEquals(self.tcx.lap_count, 3)
-
     def test_hr_max(self):
         self.assertEquals(self.tcx.hr_max, 189)
 
