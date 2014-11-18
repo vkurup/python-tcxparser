@@ -1,5 +1,6 @@
 "Simple parser for Garmin TCX files."
 
+import time
 from lxml import objectify
 
 namespace = 'http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2'
@@ -66,4 +67,10 @@ class TCXParser:
     def hr_min(self):
         """Minimum heart rate of the workout"""
         return min(self.hr_values())
+        
+    @property
+    def pace(self):
+        """Average pace (mm:ss/km for the workout"""
+        secs_per_km = self.duration/(self.distance/1000)
+        return time.strftime('%M:%S', time.gmtime(secs_per_km))
         

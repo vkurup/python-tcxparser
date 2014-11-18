@@ -43,6 +43,9 @@ class TestParseTCX(unittest.TestCase):
 
     def test_hr_avg(self):
         self.assertEquals(self.tcx.hr_avg, 156)
+        
+    def test_pace(self):
+        self.assertEquals(self.tcx.pace, '07:05')
 
 if __name__ == '__main__':
     unittest.main()
