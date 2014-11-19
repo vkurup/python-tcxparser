@@ -31,6 +31,18 @@ class TestParseTCX(unittest.TestCase):
 
     def test_calories_is_correct(self):
         self.assertEquals(self.tcx.calories, 379)
+        
+    def test_hr_max(self):
+        self.assertEquals(self.tcx.hr_max, 189)
+
+    def test_hr_min(self):
+        self.assertEquals(self.tcx.hr_min, 60)
+
+    def test_hr_avg(self):
+        self.assertEquals(self.tcx.hr_avg, 156)
+        
+    def test_pace(self):
+        self.assertEquals(self.tcx.pace, '07:05')
 
 if __name__ == '__main__':
     unittest.main()

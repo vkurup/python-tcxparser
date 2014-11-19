@@ -12,6 +12,8 @@ Data extracted:
  - distance of workout (in meters)
  - duration of workout (in seconds)
  - calories burned during workout (as estimated by device)
+ - average, max and min heart rate during workout
+ - average pace during workout
 
 ## Installation
 
@@ -20,7 +22,7 @@ Data extracted:
 ## Usage
 
     >>> import tcxparser
-    >>> tcx = tcxparser.TcxParser('/home/vinod/Downloads/20121226-212953.tcx')
+    >>> tcx = tcxparser.TCXParser('/home/vinod/Downloads/20121226-212953.tcx')
     >>> # Duration of workout in seconds
     ... tcx.duration
     1992.78
