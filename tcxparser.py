@@ -15,6 +15,9 @@ class TCXParser:
     def hr_values(self):
         return [int(x.text) for x in self.root.xpath('//ns:HeartRateBpm/ns:Value', namespaces={'ns': namespace})]
 
+    def altitude_points(self):
+        return [float(x.text) for x in self.root.xpath('//ns:AltitudeMeters', namespaces={'ns': namespace})]
+      
     @property
     def latitude(self):
         return self.activity.Lap.Track.Trackpoint.Position.LatitudeDegrees.pyval
@@ -69,4 +72,9 @@ class TCXParser:
         """Average pace (mm:ss/km for the workout"""
         secs_per_km = self.duration/(self.distance/1000)
         return time.strftime('%M:%S', time.gmtime(secs_per_km))
-        
+    
+    @property
+    def altitude_avg(self):
+        """Average altitude for the workout"""
+        altitude_data = self.altitude_points()
+        return sum(altitude_data)/len(altitude_data)
