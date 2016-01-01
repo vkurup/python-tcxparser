@@ -1,4 +1,6 @@
-v0.6.0, 2014-11-18 -- Added heart rate data & pace support
+v0.7.0, 2016-01-01 -- Added average altitude support. Thanks @firefly-cpp
+
+v0.6.0, 2014-11-18 -- Added heart rate data & pace support. Thanks @stevedoyle
 
 v0.3.0, 2013-01-09 -- Changed methods to properties
 
