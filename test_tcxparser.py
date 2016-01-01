@@ -43,6 +43,9 @@ class TestParseTCX(unittest.TestCase):
         
     def test_pace(self):
         self.assertEquals(self.tcx.pace, '07:05')
+    
+    def test_altitude_avg_is_correct(self):
+        self.assertAlmostEqual(self.tcx.altitude_avg, 172.020056184)
 
 if __name__ == '__main__':
     unittest.main()
