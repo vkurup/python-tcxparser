@@ -16,6 +16,7 @@ Data extracted:
  - calories burned during workout (as estimated by device)
  - average, max and min heart rate during workout
  - average pace during workout
+ - average altitude during workout
 
 ## Installation
 
