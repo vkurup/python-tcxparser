@@ -78,3 +78,25 @@ class TCXParser:
         """Average altitude for the workout"""
         altitude_data = self.altitude_points()
         return sum(altitude_data)/len(altitude_data)
+      
+    @property
+    def ascent(self):
+        """Returns ascent of workout in meters"""
+        total_ascent = 0.0
+        altitude_data = self.altitude_points()
+        for i in range(len(altitude_data) - 1):
+	  diff = altitude_data[i+1] - altitude_data[i] 
+	  if diff > 0.0:
+	    total_ascent += diff
+        return total_ascent
+    
+    @property 
+    def descent(self):
+        """Returns descent of workout in meters"""
+	total_descent = 0.0
+        altitude_data = self.altitude_points()
+        for i in range(len(altitude_data) - 1):
+	  diff = altitude_data[i+1] - altitude_data[i] 
+	  if diff < 0.0:
+	    total_descent += abs(diff)
+        return total_descent   

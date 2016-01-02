@@ -17,6 +17,7 @@ Data extracted:
  - average, max and min heart rate during workout
  - average pace during workout
  - average altitude during workout
+ - ascent and descent of workout
 
 ## Installation
 
