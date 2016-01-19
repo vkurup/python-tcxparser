@@ -78,6 +78,18 @@ class TCXParser:
         """Average altitude for the workout"""
         altitude_data = self.altitude_points()
         return sum(altitude_data)/len(altitude_data)
+    
+    @property
+    def altitude_max(self):
+        """Max altitude for the workout"""
+        altitude_data = self.altitude_points()
+        return max(altitude_data)
+    
+    @property
+    def altitude_min(self):
+        """Min altitude for the workout"""
+        altitude_data = self.altitude_points()
+        return min(altitude_data)
       
     @property
     def ascent(self):

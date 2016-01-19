@@ -46,7 +46,13 @@ class TestParseTCX(unittest.TestCase):
     
     def test_altitude_avg_is_correct(self):
         self.assertAlmostEqual(self.tcx.altitude_avg, 172.020056184)
+        
+    def test_altitude_max_is_correct(self):
+        self.assertAlmostEqual(self.tcx.altitude_max, 215.95324707)
     
+    def test_altitude_min_is_correct(self):
+        self.assertAlmostEqual(self.tcx.altitude_min, 157.793579102)
+        
     def test_ascent_is_correct(self):
         self.assertAlmostEqual(self.tcx.ascent, 153.80981445)
    
