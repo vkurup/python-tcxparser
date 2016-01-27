@@ -55,7 +55,11 @@ class TCXParser:
     def hr_avg(self):
         """Average heart rate of the workout"""
         hr_data = self.hr_values()
-        return sum(hr_data)/len(hr_data)
+        try:
+	  hr = sum(hr_data)/len(hr_data)    
+	except Exception as e:
+	  hr = e
+	return hr
         
     @property
     def hr_max(self):
