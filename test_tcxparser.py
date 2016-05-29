@@ -8,6 +8,14 @@ class TestParseTCX(unittest.TestCase):
         tcx_file = 'test.tcx'
         self.tcx = TCXParser(tcx_file)
 
+    def test_hr_values_are_correct(self):
+        self.assertEquals(self.tcx.hr_values()[0], 62)
+        self.assertEquals(self.tcx.hr_values()[-1], 180)
+
+    def test_altitude_points_are_correct(self):
+        self.assertEquals(self.tcx.altitude_points()[0], 178.942626953)
+        self.assertEquals(self.tcx.altitude_points()[-1], 166.4453125)
+
     def test_latitude_is_correct(self):
         self.assertEquals(self.tcx.latitude, 35.951880198)
 
