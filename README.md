@@ -19,6 +19,7 @@ Data extracted:
  - average altitude during workout
  - ascent and descent of workout
  - max and min altitude
+ - time stamp of each data point (in ISO UTC)
 
 ## Installation
 

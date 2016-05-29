@@ -19,6 +19,9 @@ class TCXParser:
     def altitude_points(self):
         return [float(x.text) for x in self.root.xpath('//ns:AltitudeMeters', namespaces={'ns': namespace})]
 
+    def time_values(self):
+        return [x.text for x in self.root.xpath('//ns:Time', namespaces={'ns': namespace})]
+
     @property
     def latitude(self):
         return self.activity.Lap.Track.Trackpoint.Position.LatitudeDegrees.pyval

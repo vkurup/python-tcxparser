@@ -16,6 +16,10 @@ class TestParseTCX(unittest.TestCase):
         self.assertEquals(self.tcx.altitude_points()[0], 178.942626953)
         self.assertEquals(self.tcx.altitude_points()[-1], 166.4453125)
 
+    def test_time_values_are_correct(self):
+        self.assertEquals(self.tcx.time_values()[0], '2012-12-26T21:29:53Z')
+        self.assertEquals(self.tcx.time_values()[-1], '2012-12-26T22:03:05Z')
+
     def test_latitude_is_correct(self):
         self.assertEquals(self.tcx.latitude, 35.951880198)
 
