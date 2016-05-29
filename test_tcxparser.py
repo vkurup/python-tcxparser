@@ -31,7 +31,7 @@ class TestParseTCX(unittest.TestCase):
 
     def test_calories_is_correct(self):
         self.assertEquals(self.tcx.calories, 379)
-        
+
     def test_hr_max(self):
         self.assertEquals(self.tcx.hr_max, 189)
 
@@ -40,24 +40,24 @@ class TestParseTCX(unittest.TestCase):
 
     def test_hr_avg(self):
         self.assertEquals(self.tcx.hr_avg, 156)
-        
+
     def test_pace(self):
         self.assertEquals(self.tcx.pace, '07:05')
-    
+
     def test_altitude_avg_is_correct(self):
         self.assertAlmostEqual(self.tcx.altitude_avg, 172.020056184)
-        
+
     def test_altitude_max_is_correct(self):
         self.assertAlmostEqual(self.tcx.altitude_max, 215.95324707)
-    
+
     def test_altitude_min_is_correct(self):
         self.assertAlmostEqual(self.tcx.altitude_min, 157.793579102)
-        
+
     def test_ascent_is_correct(self):
         self.assertAlmostEqual(self.tcx.ascent, 153.80981445)
-   
+
     def test_descent_is_correct(self):
         self.assertAlmostEqual(self.tcx.descent, 166.307128903)
-        
+
 if __name__ == '__main__':
     unittest.main()
