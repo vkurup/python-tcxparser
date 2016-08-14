@@ -40,7 +40,10 @@ class TCXParser:
 
     @property
     def distance(self):
-        return self.activity.Lap[-1].Track.Trackpoint[-2].DistanceMeters.pyval
+        distance_values = self.root.findall('.//ns:DistanceMeters', namespaces={'ns': namespace})
+        if distance_values:
+            return distance_values[-1]
+        return 0
 
     @property
     def distance_units(self):
