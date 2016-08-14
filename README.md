@@ -1,6 +1,6 @@
 # python-tcxparser
 
-[ ![Codeship Status for vkurup/python-tcxparser](https://codeship.com/projects/73da6380-712d-0132-3214-62f5102d8589/status?branch=master)](https://codeship.com/projects/54578)
+[ ![Codeship Status for vkurup/python-tcxparser](https://codeship.com/projects/eb924480-4493-0134-5e03-3a611b6d72e6/status?branch=master)](https://codeship.com/projects/168475)
 
 python-tcxparser is a minimal parser for Garmin's TCX file format. It
 is not in any way exhaustive. It extracts just enough data to allow me
