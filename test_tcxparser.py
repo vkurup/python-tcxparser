@@ -1,4 +1,6 @@
+from StringIO import StringIO
 import unittest
+
 from tcxparser import TCXParser
 
 
@@ -70,6 +72,31 @@ class TestParseTCX(unittest.TestCase):
 
     def test_descent_is_correct(self):
         self.assertAlmostEqual(self.tcx.descent, 166.307128903)
+
+
+class BugTest(unittest.TestCase):
+
+    def test_single_trackpoint_in_track_is_ok(self):
+        "https://github.com/vkurup/python-tcxparser/issues/9"
+        xml = """
+        <TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2">
+          <Activities>
+            <Activity>
+              <Lap>
+                <Track>
+                  <Trackpoint>
+                    <DistanceMeters>5</DistanceMeters>
+                  </Trackpoint>
+                </Track>
+              </Lap>
+            </Activity>
+          </Activities>
+        </TrainingCenterDatabase>
+        """
+        tcx_file = StringIO(xml)
+        tcx = TCXParser(tcx_file)
+        self.assertEqual(tcx.distance, 5)
+
 
 if __name__ == '__main__':
     unittest.main()
