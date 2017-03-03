@@ -24,11 +24,13 @@ class TCXParser:
 
     @property
     def latitude(self):
-        return self.activity.Lap.Track.Trackpoint.Position.LatitudeDegrees.pyval
+        if hasattr(self.activity.Lap.Track.Trackpoint, 'Position'):
+            return self.activity.Lap.Track.Trackpoint.Position.LatitudeDegrees.pyval
 
     @property
     def longitude(self):
-        return self.activity.Lap.Track.Trackpoint.Position.LongitudeDegrees.pyval
+        if hasattr(self.activity.Lap.Track.Trackpoint, 'Position'):
+            return self.activity.Lap.Track.Trackpoint.Position.LongitudeDegrees.pyval
 
     @property
     def activity_type(self):

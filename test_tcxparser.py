@@ -98,5 +98,27 @@ class BugTest(unittest.TestCase):
         self.assertEqual(tcx.distance, 5)
 
 
+    def test_no_error_if_no_position(self):
+        "https://github.com/vkurup/python-tcxparser/issues/11"
+        xml = """
+        <TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2">
+          <Activities>
+            <Activity>
+              <Lap>
+                <Track>
+                  <Trackpoint>
+                    <DistanceMeters>5</DistanceMeters>
+                  </Trackpoint>
+                </Track>
+              </Lap>
+            </Activity>
+          </Activities>
+        </TrainingCenterDatabase>
+        """
+        tcx_file = StringIO(xml)
+        tcx = TCXParser(tcx_file)
+        self.assertEqual(tcx.latitude, None)
+        self.assertEqual(tcx.longitude, None)
+
 if __name__ == '__main__':
     unittest.main()
