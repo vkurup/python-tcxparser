@@ -1,3 +1,5 @@
+v0.7.1, 2017-03-02 -- Don't fail if lat/lon not present.
+
 v0.7.1, 2016-08-14 -- Fix for tracks with only 1 trackpoint.
 
 v0.7.0, 2016-01-01 -- Added average altitude support. Thanks @firefly-cpp
