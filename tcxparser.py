@@ -68,7 +68,7 @@ class TCXParser:
 
     @property
     def hr_max(self):
-        """Minimum heart rate of the workout"""
+        """Maximum heart rate of the workout"""
         return max(self.hr_values())
 
     @property
