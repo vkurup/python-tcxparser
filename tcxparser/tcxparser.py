@@ -54,9 +54,7 @@ class TCXParser:
     @property
     def distance(self):
         distance_values = self.root.findall('.//ns:DistanceMeters', namespaces={'ns': namespace})
-        if distance_values:
-            return distance_values[-1]
-        return 0
+        return distance_values[-1] if distance_values else 0
 
     @property
     def distance_units(self):

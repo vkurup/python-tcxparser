@@ -3,12 +3,12 @@ try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
-import unittest
+from unittest import TestCase
 
 from tcxparser import TCXParser
 
 
-class TestParseTCX(unittest.TestCase):
+class TestParseTCX(TestCase):
 
     def setUp(self):
         tcx_file = 'test.tcx'
@@ -79,7 +79,7 @@ class TestParseTCX(unittest.TestCase):
         self.assertAlmostEqual(self.tcx.descent, 166.307128903)
 
 
-class BugTest(unittest.TestCase):
+class BugTest(TestCase):
 
     def test_single_trackpoint_in_track_is_ok(self):
         "https://github.com/vkurup/python-tcxparser/issues/9"
@@ -123,7 +123,3 @@ class BugTest(unittest.TestCase):
         tcx = TCXParser(tcx_file)
         self.assertEqual(tcx.latitude, None)
         self.assertEqual(tcx.longitude, None)
-
-
-if __name__ == '__main__':
-    unittest.main()
