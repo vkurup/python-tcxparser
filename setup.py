@@ -1,27 +1,34 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 __version__ = '0.7.2'
 
 setup(
     name='python-tcxparser',
     version=__version__,
+    description='Simple parser for Garmin TCX files',
+    long_description=open('README.md').read(),
     author='Vinod Kurup',
     author_email='vinod@kurup.com',
-    py_modules=['tcxparser', 'test_tcxparser'],
     url='https://github.com/vkurup/python-tcxparser/',
+    packages=find_packages(include=['tcxparser']),
+    include_package_data=True,
     license='BSD',
-    description='Simple parser for Garmin TCX files',
+    zip_safe=False,
+    keywords='tcx',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    long_description=open('README.md').read(),
     install_requires=[
         "lxml",
     ],
-    test_suite="test_tcxparser",
+    test_suite="tests",
 )

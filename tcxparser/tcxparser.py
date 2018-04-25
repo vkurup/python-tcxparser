@@ -1,4 +1,8 @@
 "Simple parser for Garmin TCX files."
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import time
 from lxml import objectify
@@ -21,10 +25,10 @@ class TCXParser:
 
     def time_values(self):
         return [x.text for x in self.root.xpath('//ns:Time', namespaces={'ns': namespace})]
-    
+
     def cadence_values(self):
         return [int(x.text) for x in self.root.xpath('//ns:Cadence', namespaces={'ns': namespace})]
-    
+
     @property
     def latitude(self):
         if hasattr(self.activity.Lap.Track.Trackpoint, 'Position'):
@@ -42,11 +46,11 @@ class TCXParser:
     @property
     def completed_at(self):
         return self.activity.Lap[-1].Track.Trackpoint[-1].Time.pyval
-    
+
     @property
     def cadence_avg(self):
         return self.activity.Lap[-1].Cadence
-    
+
     @property
     def distance(self):
         distance_values = self.root.findall('.//ns:DistanceMeters', namespaces={'ns': namespace})
@@ -66,12 +70,12 @@ class TCXParser:
     @property
     def calories(self):
         return sum(lap.Calories for lap in self.activity.Lap)
-    
+
     @property
     def hr_avg(self):
         """Average heart rate of the workout"""
         hr_data = self.hr_values()
-        return sum(hr_data)/len(hr_data)
+        return int(sum(hr_data) / len(hr_data))
 
     @property
     def hr_max(self):
@@ -86,14 +90,14 @@ class TCXParser:
     @property
     def pace(self):
         """Average pace (mm:ss/km for the workout"""
-        secs_per_km = self.duration/(self.distance/1000)
+        secs_per_km = self.duration / (self.distance / 1000)
         return time.strftime('%M:%S', time.gmtime(secs_per_km))
 
     @property
     def altitude_avg(self):
         """Average altitude for the workout"""
         altitude_data = self.altitude_points()
-        return sum(altitude_data)/len(altitude_data)
+        return sum(altitude_data) / len(altitude_data)
 
     @property
     def altitude_max(self):
@@ -131,6 +135,6 @@ class TCXParser:
 
     @property
     def cadence_max(self):
-      """Returns max cadence of workout"""
-      cadence_data = self.cadence_values()
-      return max(cadence_data)
+        """Returns max cadence of workout"""
+        cadence_data = self.cadence_values()
+        return max(cadence_data)
