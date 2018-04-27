@@ -1,6 +1,17 @@
-# python-tcxparser
+python-tcxparser
+================
 
-[![Build Status](https://travis-ci.org/vkurup/python-tcxparser.svg?branch=master)](https://travis-ci.org/vkurup/python-tcxparser)
+.. image:: https://img.shields.io/pypi/v/python-tcxparser.svg
+    :target: https://pypi.python.org/pypi/python-tcxparser
+    :alt: Latest PyPI version
+
+.. image:: https://travis-ci.org/vkurup/python-tcxparser.svg?branch=master
+   :target: https://travis-ci.org/vkurup/python-tcxparser
+   :alt: Latest Travis CI build status
+
+.. image:: https://pyup.io/repos/github/vkurup/python-tcxparser/shield.svg
+   :target: https://pyup.io/repos/github/vkurup/python-tcxparser/
+   :alt: Updates
 
 python-tcxparser is a minimal parser for Garmin's TCX file format. It
 is not in any way exhaustive. It extracts just enough data to allow me
@@ -21,11 +32,17 @@ Data extracted:
  - max and min altitude
  - time stamp of each data point (in ISO UTC)
 
-## Installation
+Installation
+------------
 
-    pip install python-tcxparser
+Install it from PyPI::
 
-## Usage
+   pip install python-tcxparser
+
+Usage
+-----
+
+Basic usage example::
 
     >>> import tcxparser
     >>> tcx = tcxparser.TCXParser('/home/vinod/Downloads/20121226-212953.tcx')
@@ -51,5 +68,17 @@ Data extracted:
     ... tcx.calories
     379
 
-## Contact
+Compatibility
+-------------
+
+* Python 2.7 or 3.5+
+
+License
+-------
+
+BSD
+
+Contact
+-------
+
 Please contact me with any questions: Vinod Kurup (vinod@kurup.com)
