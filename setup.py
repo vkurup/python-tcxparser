@@ -6,7 +6,7 @@ setup(
     name='python-tcxparser',
     version=__version__,
     description='Simple parser for Garmin TCX files',
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     author='Vinod Kurup',
     author_email='vinod@kurup.com',
     url='https://github.com/vkurup/python-tcxparser/',
