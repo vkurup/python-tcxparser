@@ -36,6 +36,7 @@ Data extracted:
  - ascent and descent of workout
  - max and min altitude
  - time stamp of each data point (in ISO UTC)
+ - average and max cadence (cycling activities)
 
 Installation
 ------------
