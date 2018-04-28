@@ -21,7 +21,7 @@ python-tcxparser
 python-tcxparser is a minimal parser for Garmin's TCX file format. It
 is not in any way exhaustive. It extracts just enough data to allow me
 to post data from my Garmin ForeRunner 410 watch to
-[DailyMile's](http://dailymile.com) API.
+`DailyMile's <http://dailymile.com>`_ API.
 
 Data extracted:
  - latitude & longitude of start point of workout
@@ -81,7 +81,7 @@ Compatibility
 License
 -------
 
-BSD
+* BSD
 
 Contact
 -------
