@@ -77,7 +77,7 @@ Basic usage example::
 Compatibility
 -------------
 
-* Python 2.7 or 3.7+
+* Python 2.7 or 3.6+
 
 License
 -------
