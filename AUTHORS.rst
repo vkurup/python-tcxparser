@@ -11,5 +11,6 @@ Other contributions from:
 * Jason M. (@DaddyTheRunner)
 * Adam Neumann (@noizwaves)
 * Stephen Doyle (@stevedoyle)
+* Loïs Taulelle (@ltaulell)
 
 Thank you!

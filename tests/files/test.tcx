@@ -3,6 +3,7 @@
   <Activities>
     <Activity Sport="Running">
       <Id>2012-12-26T21:29:53Z</Id>
+      <Notes>Aerobics</Notes>
       <Lap StartTime="2012-12-26T21:29:53Z">
         <TotalTimeSeconds>608.47</TotalTimeSeconds>
         <DistanceMeters>1609.34399414</DistanceMeters>

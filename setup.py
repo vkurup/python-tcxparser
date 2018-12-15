@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-__version__ = '0.8.0'
+__version__ = '1.0.0'
 
 setup(
     name='python-tcxparser',
@@ -24,7 +24,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     install_requires=[

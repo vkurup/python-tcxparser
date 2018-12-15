@@ -136,3 +136,8 @@ class TCXParser:
         """Returns max cadence of workout"""
         cadence_data = self.cadence_values()
         return max(cadence_data)
+
+    @property
+    def activity_notes(self):
+        """Return contents of Activity/Notes field if it exists."""
+        return getattr(self.activity, 'Notes', '')

@@ -78,6 +78,9 @@ class TestParseTCX(TestCase):
     def test_descent_is_correct(self):
         self.assertAlmostEqual(self.tcx.descent, 166.307128903)
 
+    def test_activity_notes_is_correct(self):
+        self.assertEqual(self.tcx.activity_notes, 'Aerobics')
+
 
 class BugTest(TestCase):
 
