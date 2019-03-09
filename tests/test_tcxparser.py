@@ -81,6 +81,11 @@ class TestParseTCX(TestCase):
     def test_activity_notes_is_correct(self):
         self.assertEqual(self.tcx.activity_notes, 'Aerobics')
 
+    def test_position_values_are_correct(self):
+        values = self.tcx.position_values()
+        self.assertAlmostEqual(values[-1][0], 35.9519544616)
+        self.assertAlmostEqual(values[-1][1], -79.0930143837)
+
 
 class BugTest(TestCase):
 
