@@ -30,7 +30,7 @@ class TCXParser:
             for pos in self.root.xpath('//ns:Trackpoint/ns:Position', namespaces={'ns': namespace})]
 
     def distance_values(self):
-        return self.root.findall('.//ns:DistanceMeters', namespaces={'ns': namespace})
+        return self.root.findall('.//ns:Trackpoint/ns:DistanceMeters', namespaces={'ns': namespace})
 
     def time_values(self):
         return [x.text for x in self.root.xpath('//ns:Time', namespaces={'ns': namespace})]
