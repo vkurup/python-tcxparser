@@ -86,6 +86,9 @@ class TestParseTCX(TestCase):
         self.assertAlmostEqual(values[-1][0], 35.9519544616)
         self.assertAlmostEqual(values[-1][1], -79.0930143837)
 
+    def test_distance_values_are_correct(self):
+        self.assertAlmostEqual(self.tcx.distance_values()[-1], 4686.31103516)
+
 
 class BugTest(TestCase):
 
