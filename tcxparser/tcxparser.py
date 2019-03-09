@@ -29,6 +29,9 @@ class TCXParser:
             float(pos.LongitudeDegrees.text))
             for pos in self.root.xpath('//ns:Trackpoint/ns:Position', namespaces={'ns': namespace})]
 
+    def distance_values(self):
+        return self.root.findall('.//ns:DistanceMeters', namespaces={'ns': namespace})
+
     def time_values(self):
         return [x.text for x in self.root.xpath('//ns:Time', namespaces={'ns': namespace})]
 
@@ -59,7 +62,7 @@ class TCXParser:
 
     @property
     def distance(self):
-        distance_values = self.root.findall('.//ns:DistanceMeters', namespaces={'ns': namespace})
+        distance_values = self.distance_values()
         return distance_values[-1] if distance_values else 0
 
     @property
