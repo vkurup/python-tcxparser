@@ -23,6 +23,12 @@ class TCXParser:
     def altitude_points(self):
         return [float(x.text) for x in self.root.xpath('//ns:AltitudeMeters', namespaces={'ns': namespace})]
 
+    def position_values(self):
+        return [
+            (float(pos.LatitudeDegrees.text),
+            float(pos.LongitudeDegrees.text))
+            for pos in self.root.xpath('//ns:Trackpoint/ns:Position', namespaces={'ns': namespace})]
+
     def time_values(self):
         return [x.text for x in self.root.xpath('//ns:Time', namespaces={'ns': namespace})]
 
