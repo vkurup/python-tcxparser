@@ -36,6 +36,9 @@ class TestParseTCX(TestCase):
     def test_activity_type_is_correct(self):
         self.assertEqual(self.tcx.activity_type, 'running')
 
+    def test_started_at_is_correct(self):
+        self.assertEqual(self.tcx.started_at, '2012-12-26T21:29:53Z')
+
     def test_completion_time_is_correct(self):
         self.assertEqual(self.tcx.completed_at, '2012-12-26T22:03:05Z')
 

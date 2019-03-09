@@ -53,6 +53,10 @@ class TCXParser:
         return self.activity.attrib['Sport'].lower()
 
     @property
+    def started_at(self):
+        return self.activity.Lap[0].attrib["StartTime"]
+
+    @property
     def completed_at(self):
         return self.activity.Lap[-1].Track.Trackpoint[-1].Time.pyval
 
