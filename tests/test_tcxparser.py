@@ -36,6 +36,9 @@ class TestParseTCX(TestCase):
     def test_activity_type_is_correct(self):
         self.assertEqual(self.tcx.activity_type, 'running')
 
+    def test_started_at_is_correct(self):
+        self.assertEqual(self.tcx.started_at, '2012-12-26T21:29:53Z')
+
     def test_completion_time_is_correct(self):
         self.assertEqual(self.tcx.completed_at, '2012-12-26T22:03:05Z')
 
@@ -80,6 +83,15 @@ class TestParseTCX(TestCase):
 
     def test_activity_notes_is_correct(self):
         self.assertEqual(self.tcx.activity_notes, 'Aerobics')
+
+    def test_position_values_are_correct(self):
+        values = self.tcx.position_values()
+        self.assertAlmostEqual(values[-1][0], 35.9519544616)
+        self.assertAlmostEqual(values[-1][1], -79.0930143837)
+
+    def test_distance_values_are_correct(self):
+        self.assertAlmostEqual(self.tcx.distance_values()[0], 0.0)
+        self.assertAlmostEqual(self.tcx.distance_values()[-1], 4686.31103516)
 
 
 class BugTest(TestCase):

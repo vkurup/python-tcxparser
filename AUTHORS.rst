@@ -12,5 +12,6 @@ Other contributions from:
 * Adam Neumann (@noizwaves)
 * Stephen Doyle (@stevedoyle)
 * Loïs Taulelle (@ltaulell)
+* Jan Pipek (@janpipek)
 
 Thank you!

@@ -23,6 +23,15 @@ class TCXParser:
     def altitude_points(self):
         return [float(x.text) for x in self.root.xpath('//ns:AltitudeMeters', namespaces={'ns': namespace})]
 
+    def position_values(self):
+        return [
+            (float(pos.LatitudeDegrees.text),
+            float(pos.LongitudeDegrees.text))
+            for pos in self.root.xpath('//ns:Trackpoint/ns:Position', namespaces={'ns': namespace})]
+
+    def distance_values(self):
+        return self.root.findall('.//ns:Trackpoint/ns:DistanceMeters', namespaces={'ns': namespace})
+
     def time_values(self):
         return [x.text for x in self.root.xpath('//ns:Time', namespaces={'ns': namespace})]
 
@@ -44,6 +53,10 @@ class TCXParser:
         return self.activity.attrib['Sport'].lower()
 
     @property
+    def started_at(self):
+        return self.activity.Lap[0].attrib["StartTime"]
+
+    @property
     def completed_at(self):
         return self.activity.Lap[-1].Track.Trackpoint[-1].Time.pyval
 
@@ -53,7 +66,7 @@ class TCXParser:
 
     @property
     def distance(self):
-        distance_values = self.root.findall('.//ns:DistanceMeters', namespaces={'ns': namespace})
+        distance_values = self.distance_values()
         return distance_values[-1] if distance_values else 0
 
     @property
