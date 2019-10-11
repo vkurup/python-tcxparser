@@ -26,7 +26,7 @@ class TCXParser:
     def position_values(self):
         return [
             (float(pos.LatitudeDegrees.text),
-            float(pos.LongitudeDegrees.text))
+             float(pos.LongitudeDegrees.text))
             for pos in self.root.xpath('//ns:Trackpoint/ns:Position', namespaces={'ns': namespace})]
 
     def distance_values(self):
