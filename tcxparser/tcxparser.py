@@ -1,56 +1,72 @@
 "Simple parser for Garmin TCX files."
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ import absolute_import, division, print_function, unicode_literals
 
 import time
+
 from lxml import objectify
 
-namespace = 'http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2'
+namespace = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2"
 
 
 class TCXParser:
-
     def __init__(self, tcx_file):
         tree = objectify.parse(tcx_file)
         self.root = tree.getroot()
         self.activity = self.root.Activities.Activity
 
     def hr_values(self):
-        return [int(x.text) for x in self.root.xpath('//ns:HeartRateBpm/ns:Value', namespaces={'ns': namespace})]
+        return [
+            int(x.text)
+            for x in self.root.xpath(
+                "//ns:HeartRateBpm/ns:Value", namespaces={"ns": namespace}
+            )
+        ]
 
     def altitude_points(self):
-        return [float(x.text) for x in self.root.xpath('//ns:AltitudeMeters', namespaces={'ns': namespace})]
+        return [
+            float(x.text)
+            for x in self.root.xpath(
+                "//ns:AltitudeMeters", namespaces={"ns": namespace}
+            )
+        ]
 
     def position_values(self):
         return [
-            (float(pos.LatitudeDegrees.text),
-             float(pos.LongitudeDegrees.text))
-            for pos in self.root.xpath('//ns:Trackpoint/ns:Position', namespaces={'ns': namespace})]
+            (float(pos.LatitudeDegrees.text), float(pos.LongitudeDegrees.text))
+            for pos in self.root.xpath(
+                "//ns:Trackpoint/ns:Position", namespaces={"ns": namespace}
+            )
+        ]
 
     def distance_values(self):
-        return self.root.findall('.//ns:Trackpoint/ns:DistanceMeters', namespaces={'ns': namespace})
+        return self.root.findall(
+            ".//ns:Trackpoint/ns:DistanceMeters", namespaces={"ns": namespace}
+        )
 
     def time_values(self):
-        return [x.text for x in self.root.xpath('//ns:Time', namespaces={'ns': namespace})]
+        return [
+            x.text for x in self.root.xpath("//ns:Time", namespaces={"ns": namespace})
+        ]
 
     def cadence_values(self):
-        return [int(x.text) for x in self.root.xpath('//ns:Cadence', namespaces={'ns': namespace})]
+        return [
+            int(x.text)
+            for x in self.root.xpath("//ns:Cadence", namespaces={"ns": namespace})
+        ]
 
     @property
     def latitude(self):
-        if hasattr(self.activity.Lap.Track.Trackpoint, 'Position'):
+        if hasattr(self.activity.Lap.Track.Trackpoint, "Position"):
             return self.activity.Lap.Track.Trackpoint.Position.LatitudeDegrees.pyval
 
     @property
     def longitude(self):
-        if hasattr(self.activity.Lap.Track.Trackpoint, 'Position'):
+        if hasattr(self.activity.Lap.Track.Trackpoint, "Position"):
             return self.activity.Lap.Track.Trackpoint.Position.LongitudeDegrees.pyval
 
     @property
     def activity_type(self):
-        return self.activity.attrib['Sport'].lower()
+        return self.activity.attrib["Sport"].lower()
 
     @property
     def started_at(self):
@@ -71,7 +87,7 @@ class TCXParser:
 
     @property
     def distance_units(self):
-        return 'meters'
+        return "meters"
 
     @property
     def duration(self):
@@ -102,7 +118,7 @@ class TCXParser:
     def pace(self):
         """Average pace (mm:ss/km for the workout"""
         secs_per_km = self.duration / (self.distance / 1000)
-        return time.strftime('%M:%S', time.gmtime(secs_per_km))
+        return time.strftime("%M:%S", time.gmtime(secs_per_km))
 
     @property
     def altitude_avg(self):
@@ -128,7 +144,7 @@ class TCXParser:
         total_ascent = 0.0
         altitude_data = self.altitude_points()
         for i in range(len(altitude_data) - 1):
-            diff = altitude_data[i+1] - altitude_data[i]
+            diff = altitude_data[i + 1] - altitude_data[i]
             if diff > 0.0:
                 total_ascent += diff
         return total_ascent
@@ -139,7 +155,7 @@ class TCXParser:
         total_descent = 0.0
         altitude_data = self.altitude_points()
         for i in range(len(altitude_data) - 1):
-            diff = altitude_data[i+1] - altitude_data[i]
+            diff = altitude_data[i + 1] - altitude_data[i]
             if diff < 0.0:
                 total_descent += abs(diff)
         return total_descent
@@ -153,4 +169,4 @@ class TCXParser:
     @property
     def activity_notes(self):
         """Return contents of Activity/Notes field if it exists."""
-        return getattr(self.activity, 'Notes', '')
+        return getattr(self.activity, "Notes", "")

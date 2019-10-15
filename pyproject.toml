@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "python-tcxparser"
+version = "1.0.0"
+description = "Simple parser for Garmin TCX files"
+authors = ["Vinod Kurup <vinod@kurup.com>"]
+license = "BSD-2-clause"
+readme = "README.rst"
+repository = "https://github.com/vkurup/python-tcxparser"
+keywords = ['tcx', 'sports']
+
+packages = [
+    {include = "tcxparser"},
+    {include = "tests"},
+]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.poetry.dependencies]
+python = "~2.7 || ^3.6"
+lxml = "^4.4"
+
+[tool.poetry.dev-dependencies]
+coverage = "^4.5"
+pytest = "^4.6"
+pytest-cov = "^2.5"
+tox = "^3.0"
+pre-commit = "^1.18"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

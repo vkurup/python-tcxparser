@@ -5,10 +5,17 @@ language: python
 python:
   - "2.7"
   - "3.6"
+  - "3.7"
 
-install:
+before_install:
+  - pip install pip -U
   - pip install tox-travis
   - pip install codecov
+
+install:
+  - curl -fsS -o get-poetry.py https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py
+  - python get-poetry.py --preview -y
+  - source $HOME/.poetry/env
 
 script:
   - tox
