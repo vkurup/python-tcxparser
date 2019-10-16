@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-tcxparser"
-version = "1.0.0"
+version = "1.0.1"
 description = "Simple parser for Garmin TCX files"
 authors = ["Vinod Kurup <vinod@kurup.com>"]
 license = "BSD-2-clause"

@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+v1.0.1, 2019-10-16
+------------------
+
+* Use https://poetry.eustace.io/ for packaging, etc.
+* Use pre-commit hooks for black, isort, flake8
+* Add started_at, distance_values and position_values. Thanks @janpipek
+
+
 v1.0.0, 2018-12-15
 ------------------
 
