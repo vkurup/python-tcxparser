@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+v1.1.0, 2020-01-10
+------------------
+
+* Add distance_values, position_values and started_at attributes. Thanks @janpipek (#23)
+
+
 v1.0.0, 2018-12-15
 ------------------
 
