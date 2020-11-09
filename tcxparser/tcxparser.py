@@ -38,6 +38,12 @@ class TCXParser:
     def cadence_values(self):
         return [int(x.text) for x in self.root.xpath('//ns:Cadence', namespaces={'ns': namespace})]
 
+    def latitude_values(self):
+        return self.root.findall('.//ns:Trackpoint/ns:Position/ns:LatitudeDegrees', namespaces={'ns': namespace})
+
+    def longitude_values(self):
+        return self.root.findall('.//ns:Trackpoint/ns:Position/ns:LongitudeDegrees', namespaces={'ns': namespace})
+
     @property
     def latitude(self):
         if hasattr(self.activity.Lap.Track.Trackpoint, 'Position'):
