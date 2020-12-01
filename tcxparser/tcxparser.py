@@ -98,6 +98,41 @@ class TCXParser:
         """Minimum heart rate of the workout"""
         return min(self.hr_values())
 
+    def hr_percent_in_zones(self, zones):
+        """Percentage of workout spent in each heart rate zone.
+
+        Given these user's heart rate zones:
+        zones = {
+            "Z0": (0, 119),
+            "Z1": (120, 199),
+            "Z2": (200, 240),
+        }
+
+        Then `self.hr_percent_in_zones(zones)` would return something like:
+        {
+            "Z0": 5,
+            "Z1": 95,
+            "Z2": 0,
+        }
+
+        Correct calculation relies on evenly spaced measurement times.
+        """
+        # Initialize a dictionary with one item for each zone
+        per_zone = dict.fromkeys(zones.keys(), 0)
+
+        # count number of HR measurements per zone
+        hr_values = self.hr_values()
+        for hr in hr_values:
+            for zone_name, zone_boundaries in zones.items():
+                if hr >= zone_boundaries[0] and hr <= zone_boundaries[1]:
+                    per_zone[zone_name] += 1
+
+        # convert counts to percentages
+        nr_hr_values = len(hr_values)
+        for name, count in per_zone.items():
+            per_zone[name] = round(100 * count / nr_hr_values)
+        return per_zone
+
     @property
     def pace(self):
         """Average pace (mm:ss/km for the workout"""

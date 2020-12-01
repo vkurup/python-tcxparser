@@ -93,6 +93,20 @@ class TestParseTCX(TestCase):
         self.assertAlmostEqual(self.tcx.distance_values()[0], 0.0)
         self.assertAlmostEqual(self.tcx.distance_values()[-1], 4686.31103516)
 
+    def test_hr_percent_in_zones(self):
+        zones = {
+            "Z0": (0, 99),
+            "Z1": (100, 129),
+            "Z2": (130, 149),
+            "Z3": (150, 169),
+            "Z4": (170, 184),
+            "Z5": (185, 199),
+            "Z6": (200, 220),
+        }
+        self.assertEqual(
+            self.tcx.hr_percent_in_zones(zones),
+            {'Z0': 14, 'Z1': 1, 'Z2': 1, 'Z3': 46, 'Z4': 33, 'Z5': 5, 'Z6': 0}
+        )
 
 class BugTest(TestCase):
 
