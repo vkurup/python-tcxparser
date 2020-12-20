@@ -1,6 +1,6 @@
 . # <- install ourselves
 coverage
 flake8
-pre-commit
+pre-commit==2.9.3
 tox
 tox-gh-actions
