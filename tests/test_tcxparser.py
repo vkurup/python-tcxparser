@@ -6,6 +6,7 @@ except ImportError:
 from unittest import TestCase
 
 from tcxparser import TCXParser
+from tcxparser.exceptions import NoHeartRateDataError
 
 
 class TestParseTCX(TestCase):
@@ -108,6 +109,7 @@ class TestParseTCX(TestCase):
             {'Z0': 14, 'Z1': 1, 'Z2': 1, 'Z3': 46, 'Z4': 33, 'Z5': 5, 'Z6': 0}
         )
 
+
 class BugTest(TestCase):
 
     def test_single_trackpoint_in_track_is_ok(self):
@@ -152,3 +154,10 @@ class BugTest(TestCase):
         tcx = TCXParser(tcx_file)
         self.assertEqual(tcx.latitude, None)
         self.assertEqual(tcx.longitude, None)
+
+    def test_hr_percent_in_zones_no_hr_data(self):
+        tcx_file = 'no_hr.tcx'
+        path = os.path.join(os.path.dirname(__file__), 'files', tcx_file)
+        tcx = TCXParser(path)
+        with self.assertRaises(NoHeartRateDataError):
+            tcx.hr_percent_in_zones({})

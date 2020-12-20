@@ -7,6 +7,8 @@ from __future__ import unicode_literals
 import time
 from lxml import objectify
 
+from .exceptions import NoHeartRateDataError
+
 namespace = 'http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2'
 
 
@@ -117,11 +119,14 @@ class TCXParser:
 
         Correct calculation relies on evenly spaced measurement times.
         """
+        hr_values = self.hr_values()
+        if not hr_values:
+            raise NoHeartRateDataError
+
         # Initialize a dictionary with one item for each zone
         per_zone = dict.fromkeys(zones.keys(), 0)
 
         # count number of HR measurements per zone
-        hr_values = self.hr_values()
         for hr in hr_values:
             for zone_name, zone_boundaries in zones.items():
                 if hr >= zone_boundaries[0] and hr <= zone_boundaries[1]:
