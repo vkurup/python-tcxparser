@@ -1,6 +1,6 @@
 . # <- install ourselves
 coverage
-flake8
+flake8==3.8.4
 pre-commit
 tox
 tox-gh-actions
