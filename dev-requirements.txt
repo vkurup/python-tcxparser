@@ -3,4 +3,4 @@ coverage
 flake8
 pre-commit
 tox
-tox-gh-actions
+tox-gh-actions==2.2.0
