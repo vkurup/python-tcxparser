@@ -5,10 +5,9 @@ from tcxparser import TCXParser
 
 
 class TestParseCyclingTCX(TestCase):
-
     def setUp(self):
-        tcx_file = 'test2.tcx'
-        path = os.path.join(os.path.dirname(__file__), 'files', tcx_file)
+        tcx_file = "test2.tcx"
+        path = os.path.join(os.path.dirname(__file__), "files", tcx_file)
         self.tcx = TCXParser(path)
 
     def test_cadence_max_is_correct(self):

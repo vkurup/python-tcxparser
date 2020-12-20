@@ -1,0 +1,6 @@
+. # <- install ourselves
+coverage
+flake8
+pre-commit
+tox
+tox-gh-actions

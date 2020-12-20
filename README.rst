@@ -1,22 +1,19 @@
 python-tcxparser
 ================
 
-.. image:: https://img.shields.io/pypi/v/python-tcxparser.svg
-    :target: https://pypi.python.org/pypi/python-tcxparser
-    :alt: Latest PyPI version
+.. sidebar:: Build Status
 
-.. image:: https://travis-ci.org/vkurup/python-tcxparser.svg?branch=master
-   :target: https://travis-ci.org/vkurup/python-tcxparser
-   :alt: Latest Travis CI build status
+   :master: |master-status|
+   :develop: |develop-status|
 
 .. image:: https://pyup.io/repos/github/vkurup/python-tcxparser/shield.svg
    :target: https://pyup.io/repos/github/vkurup/python-tcxparser/
    :alt: Requirement Updates
 
-.. image:: https://codecov.io/gh/vkurup/python-tcxparser/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/vkurup/python-tcxparser
-   :alt: Code Coverage
-
+.. |master-status| image::
+    https://github.com/vkurup/python-tcxparser/workflows/lint-test/badge.svg?branch=master
+    :alt: Build Status
+    :target: https://github.com/vkurup/python-tcxparser/actions?query=branch%3Amaster
 
 python-tcxparser is a minimal parser for Garmin's TCX file format. It
 is not in any way exhaustive. It extracts just enough data to allow me
@@ -85,6 +82,28 @@ License
 -------
 
 * BSD
+
+
+Maintainer Information
+----------------------
+
+We use Github Actions to lint (using pre-commit, black, isort, and flake8),
+test (using tox and tox-gh-actions), and calculate coverage (using coverage).
+
+We have a local script to do these actions locally, named ``maintain.sh``::
+
+  $ ./maintain.sh
+
+A Github Action workflow also builds and pushes a new package to PyPI whenever a new
+Release is created in Github. This uses a project-specific PyPI token, as described in
+the `PyPI documentation here <https://pypi.org/help/#apitoken>`_. That token has been
+saved in the ``PYPI_PASSWORD`` settings for this repo, but has not been saved anywhere
+else so if it is needed for any reason, the current one should be deleted and a new one
+generated.
+
+As always, be sure to bump the version in ``setup.py`` before creating a Release, so
+that the proper version gets pushed to PyPI.
+
 
 Contact
 -------

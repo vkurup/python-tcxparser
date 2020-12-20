@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v2.0.0, 2020-12-20
+------------------
+
+* Add command to extract the percentage of workout spent in each HR zone. Thanks @khink (#29)
+* Drops support for Python 2.7
+
+
 v1.1.0, 2020-01-10
 ------------------
 
