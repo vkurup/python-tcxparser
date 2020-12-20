@@ -13,5 +13,6 @@ Other contributions from:
 * Stephen Doyle (@stevedoyle)
 * Loïs Taulelle (@ltaulell)
 * Jan Pipek (@janpipek)
+* Kees Hink (@khink)
 
 Thank you!
