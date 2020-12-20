@@ -1,4 +1,5 @@
 import os
+
 try:
     from StringIO import StringIO
 except ImportError:
@@ -10,10 +11,9 @@ from tcxparser.exceptions import NoHeartRateDataError
 
 
 class TestParseTCX(TestCase):
-
     def setUp(self):
-        tcx_file = 'test.tcx'
-        path = os.path.join(os.path.dirname(__file__), 'files', tcx_file)
+        tcx_file = "test.tcx"
+        path = os.path.join(os.path.dirname(__file__), "files", tcx_file)
         self.tcx = TCXParser(path)
 
     def test_hr_values_are_correct(self):
@@ -25,8 +25,8 @@ class TestParseTCX(TestCase):
         self.assertEqual(self.tcx.altitude_points()[-1], 166.4453125)
 
     def test_time_values_are_correct(self):
-        self.assertEqual(self.tcx.time_values()[0], '2012-12-26T21:29:53Z')
-        self.assertEqual(self.tcx.time_values()[-1], '2012-12-26T22:03:05Z')
+        self.assertEqual(self.tcx.time_values()[0], "2012-12-26T21:29:53Z")
+        self.assertEqual(self.tcx.time_values()[-1], "2012-12-26T22:03:05Z")
 
     def test_latitude_is_correct(self):
         self.assertEqual(self.tcx.latitude, 35.951880198)
@@ -35,19 +35,19 @@ class TestParseTCX(TestCase):
         self.assertEqual(self.tcx.longitude, -79.0931872185)
 
     def test_activity_type_is_correct(self):
-        self.assertEqual(self.tcx.activity_type, 'running')
+        self.assertEqual(self.tcx.activity_type, "running")
 
     def test_started_at_is_correct(self):
-        self.assertEqual(self.tcx.started_at, '2012-12-26T21:29:53Z')
+        self.assertEqual(self.tcx.started_at, "2012-12-26T21:29:53Z")
 
     def test_completion_time_is_correct(self):
-        self.assertEqual(self.tcx.completed_at, '2012-12-26T22:03:05Z')
+        self.assertEqual(self.tcx.completed_at, "2012-12-26T22:03:05Z")
 
     def test_distance_is_correct(self):
         self.assertEqual(self.tcx.distance, 4686.31103516)
 
     def test_distance_units_is_correct(self):
-        self.assertEqual(self.tcx.distance_units, 'meters')
+        self.assertEqual(self.tcx.distance_units, "meters")
 
     def test_duration_is_correct(self):
         self.assertEqual(self.tcx.duration, 1992.78)
@@ -65,7 +65,7 @@ class TestParseTCX(TestCase):
         self.assertEqual(self.tcx.hr_avg, 156)
 
     def test_pace(self):
-        self.assertEqual(self.tcx.pace, '07:05')
+        self.assertEqual(self.tcx.pace, "07:05")
 
     def test_altitude_avg_is_correct(self):
         self.assertAlmostEqual(self.tcx.altitude_avg, 172.020056184)
@@ -83,7 +83,7 @@ class TestParseTCX(TestCase):
         self.assertAlmostEqual(self.tcx.descent, 166.307128903)
 
     def test_activity_notes_is_correct(self):
-        self.assertEqual(self.tcx.activity_notes, 'Aerobics')
+        self.assertEqual(self.tcx.activity_notes, "Aerobics")
 
     def test_position_values_are_correct(self):
         values = self.tcx.position_values()
@@ -106,12 +106,11 @@ class TestParseTCX(TestCase):
         }
         self.assertEqual(
             self.tcx.hr_percent_in_zones(zones),
-            {'Z0': 14, 'Z1': 1, 'Z2': 1, 'Z3': 46, 'Z4': 33, 'Z5': 5, 'Z6': 0}
+            {"Z0": 14, "Z1": 1, "Z2": 1, "Z3": 46, "Z4": 33, "Z5": 5, "Z6": 0},
         )
 
 
 class BugTest(TestCase):
-
     def test_single_trackpoint_in_track_is_ok(self):
         "https://github.com/vkurup/python-tcxparser/issues/9"
         xml = """
@@ -156,8 +155,8 @@ class BugTest(TestCase):
         self.assertEqual(tcx.longitude, None)
 
     def test_hr_percent_in_zones_no_hr_data(self):
-        tcx_file = 'no_hr.tcx'
-        path = os.path.join(os.path.dirname(__file__), 'files', tcx_file)
+        tcx_file = "no_hr.tcx"
+        path = os.path.join(os.path.dirname(__file__), "files", tcx_file)
         tcx = TCXParser(path)
         with self.assertRaises(NoHeartRateDataError):
             tcx.hr_percent_in_zones({})
