@@ -4,7 +4,6 @@ python-tcxparser
 .. sidebar:: Build Status
 
    :master: |master-status|
-   :develop: |develop-status|
 
 .. image:: https://pyup.io/repos/github/vkurup/python-tcxparser/shield.svg
    :target: https://pyup.io/repos/github/vkurup/python-tcxparser/
