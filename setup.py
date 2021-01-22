@@ -30,6 +30,7 @@ setup(
     ],
     install_requires=[
         "lxml",
+        "python-dateutil",
     ],
     test_suite="tests",
 )
