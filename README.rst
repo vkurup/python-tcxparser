@@ -15,9 +15,7 @@ python-tcxparser
     :target: https://github.com/vkurup/python-tcxparser/actions?query=branch%3Amaster
 
 python-tcxparser is a minimal parser for Garmin's TCX file format. It
-is not in any way exhaustive. It extracts just enough data to allow me
-to post data from my Garmin ForeRunner 410 watch to
-`DailyMile's <http://dailymile.com>`_ API.
+is not in any way exhaustive.
 
 Data extracted:
  - latitude & longitude of start point of workout
@@ -33,6 +31,7 @@ Data extracted:
  - max and min altitude
  - time stamp of each data point (in ISO UTC)
  - average and max cadence (cycling activities)
+ - percentage and time spent in heart rate zone
 
 Installation
 ------------
@@ -69,6 +68,9 @@ Basic usage example::
     >>> # calories burned (as reported by device)
     ... tcx.calories
     379
+    >>> # percentage of workout spent in each user-defined heart rate zone
+    ... tcx.hr_percent_in_zones({"Z0": (0, 99), "Z1": (100, 129), "Z2": (130, 200)})
+    {"Z0": 14, "Z1": 36, "Z2": 50}
 
 Compatibility
 -------------

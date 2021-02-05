@@ -1,6 +1,8 @@
 "Simple parser for Garmin TCX files."
 import time
+from datetime import timedelta
 
+from dateutil.parser import isoparse
 from lxml import objectify
 
 from .exceptions import NoHeartRateDataError
@@ -47,6 +49,32 @@ class TCXParser:
         return [
             x.text for x in self.root.xpath("//ns:Time", namespaces={"ns": namespace})
         ]
+
+    def time_objects(self):
+        """Return a list of timezone-aware datetime objects for each string in time_values()."""
+        return [isoparse(x) for x in self.time_values()]
+
+    def time_durations(self):
+        """Return a list of timedelta objects for each string in time_values().
+
+        This can be used to calculate the total time in each HR zone, as opposed to the
+        total amount of trackpoints in each HR zone.
+        """
+        time_objects = self.time_objects()
+        last_index = len(time_objects) - 1
+
+        durations = []
+        for idx, dt in enumerate(time_objects):
+            if idx > 0:
+                # Add half the time elapsed since previous trackpoint
+                duration = (dt - time_objects[idx - 1]) / 2
+            else:
+                duration = timedelta(0)
+            if idx < last_index:
+                # Add half the time to next trackpoint
+                duration += (time_objects[idx + 1] - dt) / 2
+            durations.append(duration)
+        return durations
 
     def cadence_values(self):
         return [
@@ -150,6 +178,38 @@ class TCXParser:
         nr_hr_values = len(hr_values)
         for name, count in per_zone.items():
             per_zone[name] = round(100 * count / nr_hr_values)
+        return per_zone
+
+    def hr_time_in_zones(self, zones):
+        """Time spent in each heart rate zone.
+
+        Given these user's heart rate zones:
+        zones = {
+            "Z0": (0, 119),
+            "Z1": (120, 199),
+            "Z2": (200, 240),
+        }
+
+        Then `self.hr_time_in_zones(zones)` would return something like:
+        {
+            "Z0": timedelta(seconds=3600),
+            "Z1": timedelta(seconds=1800),
+            "Z2": timedelta(seconds=300),
+        }
+        """
+        hr_values = self.hr_values()
+        if not hr_values:
+            raise NoHeartRateDataError
+
+        # Initialize a dictionary with time=0 for each zone
+        per_zone = dict.fromkeys(zones.keys(), timedelta(0))
+
+        # count number of HR measurements per zone
+        for hr, td in zip(hr_values, self.time_durations()):
+            for zone_name, zone_boundaries in zones.items():
+                if hr >= zone_boundaries[0] and hr <= zone_boundaries[1]:
+                    per_zone[zone_name] += td
+
         return per_zone
 
     @property
