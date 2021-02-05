@@ -1,4 +1,5 @@
 import os
+from datetime import datetime, timedelta, timezone
 
 try:
     from StringIO import StringIO
@@ -27,6 +28,22 @@ class TestParseTCX(TestCase):
     def test_time_values_are_correct(self):
         self.assertEqual(self.tcx.time_values()[0], "2012-12-26T21:29:53Z")
         self.assertEqual(self.tcx.time_values()[-1], "2012-12-26T22:03:05Z")
+
+    def test_time_objects_are_correct(self):
+        self.assertEqual(
+            self.tcx.time_objects()[0],
+            datetime(2012, 12, 26, 21, 29, 53, tzinfo=timezone.utc),
+        )
+        self.assertEqual(
+            self.tcx.time_objects()[-1],
+            datetime(2012, 12, 26, 22, 3, 5, tzinfo=timezone.utc),
+        )
+
+    def test_time_durations_are_correct(self):
+        time_durations = self.tcx.time_durations()
+        assert len(time_durations) == len(self.tcx.time_values())
+        self.assertEqual(time_durations[0], timedelta(microseconds=500000))
+        self.assertEqual(time_durations[-1], timedelta(microseconds=500000))
 
     def test_latitude_is_correct(self):
         self.assertEqual(self.tcx.latitude, 35.951880198)
@@ -107,6 +124,29 @@ class TestParseTCX(TestCase):
         self.assertEqual(
             self.tcx.hr_percent_in_zones(zones),
             {"Z0": 14, "Z1": 1, "Z2": 1, "Z3": 46, "Z4": 33, "Z5": 5, "Z6": 0},
+        )
+
+    def test_hr_time_in_zones(self):
+        zones = {
+            "Z0": (0, 99),
+            "Z1": (100, 129),
+            "Z2": (130, 149),
+            "Z3": (150, 169),
+            "Z4": (170, 184),
+            "Z5": (185, 199),
+            "Z6": (200, 220),
+        }
+        self.assertEqual(
+            self.tcx.hr_time_in_zones(zones),
+            {
+                "Z0": timedelta(seconds=217, microseconds=500000),
+                "Z1": timedelta(seconds=3, microseconds=500000),
+                "Z2": timedelta(seconds=4, microseconds=500000),
+                "Z3": timedelta(seconds=969),
+                "Z4": timedelta(seconds=676, microseconds=500000),
+                "Z5": timedelta(seconds=120, microseconds=500000),
+                "Z6": timedelta(0),
+            },
         )
 
 
