@@ -106,7 +106,11 @@ class TCXParser:
 
     @property
     def cadence_avg(self):
-        return self.activity.Lap[-1].Cadence if hasattr(self.activity.Lap[-1], "Cadence") else None
+        return (
+            self.activity.Lap[-1].Cadence
+            if hasattr(self.activity.Lap[-1], "Cadence")
+            else None
+        )
 
     @property
     def distance(self):

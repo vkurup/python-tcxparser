@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+v2.1.0, 2021-12-30
+----------------
+
+* Calculate time in HR zones. Thanks @khink (#41)
+* Don't throw exceptions when certain data is missing. Thanks @terra-alex (#74)
+* Minor updates to dependencies. Thanks pyup-bot
+
+
 v2.0.0, 2020-12-20
 ------------------
 

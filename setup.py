@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-__version__ = "2.0.0"
+__version__ = "2.1.0"
 
 setup(
     name="python-tcxparser",

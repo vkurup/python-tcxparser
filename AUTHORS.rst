@@ -14,5 +14,6 @@ Other contributions from:
 * Loïs Taulelle (@ltaulell)
 * Jan Pipek (@janpipek)
 * Kees Hink (@khink)
+* @terra-alex
 
 Thank you!
