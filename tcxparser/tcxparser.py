@@ -106,7 +106,7 @@ class TCXParser:
 
     @property
     def cadence_avg(self):
-        return self.activity.Lap[-1].Cadence
+        return self.activity.Lap[-1].Cadence if hasattr(self.activity.Lap[-1], "Cadence") else None
 
     @property
     def distance(self):
@@ -130,17 +130,17 @@ class TCXParser:
     def hr_avg(self):
         """Average heart rate of the workout"""
         hr_data = self.hr_values()
-        return int(sum(hr_data) / len(hr_data))
+        return int(sum(hr_data) / len(hr_data)) if hr_data else None
 
     @property
     def hr_max(self):
         """Maximum heart rate of the workout"""
-        return max(self.hr_values())
+        return max(self.hr_values()) if self.hr_values() else None
 
     @property
     def hr_min(self):
         """Minimum heart rate of the workout"""
-        return min(self.hr_values())
+        return min(self.hr_values()) if self.hr_values() else None
 
     def hr_percent_in_zones(self, zones):
         """Percentage of workout spent in each heart rate zone.
@@ -262,7 +262,7 @@ class TCXParser:
     def cadence_max(self):
         """Returns max cadence of workout"""
         cadence_data = self.cadence_values()
-        return max(cadence_data)
+        return max(cadence_data) if cadence_data else None
 
     @property
     def activity_notes(self):
