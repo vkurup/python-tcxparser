@@ -6,6 +6,12 @@ from tcxparser import TCXParser
 
 class TestParseCyclingTCX(TestCase):
     def setUp(self):
+        """
+        TCX file test2.tcx was taken from the following dataset:
+        S. Rauter, I. Jr. Fister, I. Fister. A collection of sport activity files
+        for data analysis and data mining.
+        Technical report 0201, University of Ljubljana and University of Maribor, 2015.
+        """
         tcx_file = "test2.tcx"
         path = os.path.join(os.path.dirname(__file__), "files", tcx_file)
         self.tcx = TCXParser(path)
