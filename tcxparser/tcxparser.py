@@ -8,7 +8,8 @@ from lxml import objectify
 from .exceptions import NoHeartRateDataError
 
 namespace = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2"
-namespace2 = 'http://www.garmin.com/xmlschemas/ActivityExtension/v2'
+namespace2 = "http://www.garmin.com/xmlschemas/ActivityExtension/v2"
+
 
 class TCXParser:
     def __init__(self, tcx_file):
