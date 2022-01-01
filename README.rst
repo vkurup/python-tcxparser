@@ -32,6 +32,7 @@ Data extracted:
  - time stamp of each data point (in ISO UTC)
  - average and max cadence (cycling activities)
  - percentage and time spent in heart rate zone
+ - average and max power
 
 Installation
 ------------

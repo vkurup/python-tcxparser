@@ -8,7 +8,7 @@ from lxml import objectify
 from .exceptions import NoHeartRateDataError
 
 namespace = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2"
-
+namespace2 = 'http://www.garmin.com/xmlschemas/ActivityExtension/v2'
 
 class TCXParser:
     def __init__(self, tcx_file):
@@ -80,6 +80,12 @@ class TCXParser:
         return [
             int(x.text)
             for x in self.root.xpath("//ns:Cadence", namespaces={"ns": namespace})
+        ]
+
+    def power_values(self):
+        return [
+            int(x.text)
+            for x in self.root.xpath("//ns:TPX/ns:Watts", namespaces={"ns": namespace2})
         ]
 
     @property
@@ -272,3 +278,15 @@ class TCXParser:
     def activity_notes(self):
         """Return contents of Activity/Notes field if it exists."""
         return getattr(self.activity, "Notes", "")
+
+    @property
+    def power_max(self):
+        """Returns max power (in watts) of workout"""
+        power_data = self.power_values()
+        return max(power_data) if power_data else None
+
+    @property
+    def power_avg(self):
+        """Returns avg power (in watts) of workout"""
+        power_data = self.power_values()
+        return int((sum(power_data) / len(power_data))) if power_data else None
