@@ -8,7 +8,7 @@ from lxml import objectify
 from .exceptions import NoHeartRateDataError
 
 namespace = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2"
-
+namespace_Polar_ext = "http://www.garmin.com/xmlschemas/ActivityExtension/v2"
 
 class TCXParser:
     def __init__(self, tcx_file):
@@ -81,6 +81,12 @@ class TCXParser:
             int(x.text)
             for x in self.root.xpath("//ns:Cadence", namespaces={"ns": namespace})
         ]
+
+    def power_values(self):
+        """Utilize Activity Extension to retrieve Polar Running Power from Polar .TCX-file"""
+        return self.root.findall(
+            ".//ns1:Watts", namespaces={"ns1": namespace_Polar_ext}
+        )
 
     @property
     def latitude(self):
