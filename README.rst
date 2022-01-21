@@ -10,7 +10,7 @@ python-tcxparser
    :alt: Requirement Updates
 
 .. image:: https://img.shields.io/fedora/v/python3-tcxparser?color=blue&label=Fedora%20Linux&logo=fedora
-   :target: https://src.fedoraproject.org/rpms/python-sport-activities-features
+   :target: https://src.fedoraproject.org/rpms/python-tcxparser
    :alt: Fedora package
 
 .. |master-status| image::
