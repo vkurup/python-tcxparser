@@ -21,3 +21,9 @@ class TestParseCyclingTCX(TestCase):
 
     def test_cadence_avg_is_correct(self):
         self.assertEqual(self.tcx.cadence_avg, 82)
+
+    def test_power_avg_is_correct(self):
+        self.assertEqual(self.tcx.power_avg, 146)
+
+    def test_power_max_is_correct(self):
+        self.assertEqual(self.tcx.power_max, 419)
