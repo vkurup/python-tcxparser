@@ -9,6 +9,10 @@ python-tcxparser
    :target: https://pyup.io/repos/github/vkurup/python-tcxparser/
    :alt: Requirement Updates
 
+.. image:: https://img.shields.io/fedora/v/python3-tcxparser?color=blue&label=Fedora%20Linux&logo=fedora
+   :target: https://src.fedoraproject.org/rpms/python-tcxparser
+   :alt: Fedora package
+
 .. |master-status| image::
     https://github.com/vkurup/python-tcxparser/workflows/lint-test/badge.svg?branch=master
     :alt: Build Status
