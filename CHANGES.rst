@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v2.2.0, 2022-01-23
+----------------
+
+* Minor release and test improvements. Thanks @firefly-cpp (#76, #77)
+* Add support for max and avg power. Thanks @firefly-cpp (#78)
+
+
 v2.1.0, 2021-12-30
 ----------------
 
