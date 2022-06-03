@@ -1,5 +1,5 @@
 . # <- install ourselves
-coverage==6.3.3
+coverage==6.4.1
 flake8==4.0.1
 pre-commit==2.19.0
 tox==3.25.0
