@@ -10,7 +10,6 @@ from .exceptions import NoHeartRateDataError
 namespace = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2"
 namespace2 = "http://www.garmin.com/xmlschemas/ActivityExtension/v2"
 
-
 class TCXParser:
     def __init__(self, tcx_file):
         tree = objectify.parse(tcx_file)
@@ -87,6 +86,12 @@ class TCXParser:
         return [
             int(x.text)
             for x in self.root.xpath("//ns:TPX/ns:Watts", namespaces={"ns": namespace2})
+        ]
+
+    def steps_values(self):
+        return [
+            int(x.text)
+            for x in self.root.xpath("//ns:Steps", namespaces={"ns": namespace2})
         ]
 
     @property
@@ -291,3 +296,9 @@ class TCXParser:
         """Returns avg power (in watts) of workout"""
         power_data = self.power_values()
         return int((sum(power_data) / len(power_data))) if power_data else None
+
+    @property
+    def total_steps(self):
+        """Returns total steps (strokes) of workout"""
+        step_data = self.steps_values()
+        return (sum(step_data))
