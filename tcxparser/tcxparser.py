@@ -89,6 +89,12 @@ class TCXParser:
             for x in self.root.xpath("//ns:TPX/ns:Watts", namespaces={"ns": namespace2})
         ]
 
+    def steps_values(self):
+        return [
+            int(x.text)
+            for x in self.root.xpath("//ns:Steps", namespaces={"ns": namespace2})
+        ]
+
     @property
     def latitude(self):
         if hasattr(self.activity.Lap.Track.Trackpoint, "Position"):
@@ -291,3 +297,9 @@ class TCXParser:
         """Returns avg power (in watts) of workout"""
         power_data = self.power_values()
         return int((sum(power_data) / len(power_data))) if power_data else None
+
+    @property
+    def total_steps(self):
+        """Returns total steps (strokes) of workout"""
+        step_data = self.steps_values()
+        return sum(step_data)
