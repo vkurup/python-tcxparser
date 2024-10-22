@@ -2,5 +2,5 @@
 coverage==6.3.3
 flake8==4.0.1
 pre-commit==2.19.0
-tox==3.25.0
+tox==4.23.2
 tox-gh-actions==2.9.1
