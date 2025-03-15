@@ -1,4 +1,5 @@
 "Simple parser for Garmin TCX files."
+
 import time
 from datetime import timedelta
 
