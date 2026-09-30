@@ -151,6 +151,38 @@ class TestParseTCX(TestCase):
 
 
 class BugTest(TestCase):
+    def test_completed_at_uses_last_track_of_last_lap(self):
+        for track_count in (1, 2):
+            with self.subTest(track_count=track_count):
+                tracks = "".join(
+                    "<Track>"
+                    "<Trackpoint><Time>2026-01-01T01:{minute:02d}:00Z</Time></Trackpoint>"
+                    "<Trackpoint><Time>2026-01-01T01:{minute:02d}:30Z</Time></Trackpoint>"
+                    "</Track>".format(minute=i * 10)
+                    for i in range(1, track_count + 1)
+                )
+                xml = """
+                <TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2">
+                  <Activities>
+                    <Activity Sport="Running">
+                      <Lap StartTime="2026-01-01T00:00:00Z">
+                        <Track>
+                          <Trackpoint><Time>2026-01-01T00:30:00Z</Time></Trackpoint>
+                        </Track>
+                      </Lap>
+                      <Lap StartTime="2026-01-01T01:00:00Z">{tracks}</Lap>
+                    </Activity>
+                  </Activities>
+                </TrainingCenterDatabase>
+                """.format(
+                    tracks=tracks
+                )
+                tcx = TCXParser(StringIO(xml))
+                self.assertEqual(
+                    tcx.completed_at,
+                    "2026-01-01T01:{:02d}:30Z".format(track_count * 10),
+                )
+
     def test_single_trackpoint_in_track_is_ok(self):
         "https://github.com/vkurup/python-tcxparser/issues/9"
         xml = """

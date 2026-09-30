@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+Unreleased
+----------
+
+* Return the final track's completion time when a lap contains multiple tracks.
+
 v2.4.0, 2025-03-15
 ----------------
 

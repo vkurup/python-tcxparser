@@ -116,7 +116,7 @@ class TCXParser:
 
     @property
     def completed_at(self):
-        return self.activity.Lap[-1].Track.Trackpoint[-1].Time.pyval
+        return self.activity.Lap[-1].Track[-1].Trackpoint[-1].Time.pyval
 
     @property
     def cadence_avg(self):
