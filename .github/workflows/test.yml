@@ -9,6 +9,9 @@ on:
     # run once a week on early monday mornings
     - cron: '22 2 * * 1'
 
+permissions:
+  contents: read
+
 jobs:
   pre-commit:
     runs-on: ubuntu-22.04
