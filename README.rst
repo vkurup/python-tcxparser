@@ -81,7 +81,7 @@ Basic usage example::
 Compatibility
 -------------
 
-* Python 3.7+, see `tox.ini`_.
+* Python 3.10+, see `tox.ini`_.
 
 .. _tox.ini: tox.ini
 
