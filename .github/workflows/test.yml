@@ -13,14 +13,16 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: |
            3.10
            3.11
            3.12
            3.13
+           3.14
+           3.15
       - uses: pre-commit/action@v3.0.1
 
   tox:
@@ -29,15 +31,15 @@ jobs:
       matrix:
         # tox-gh-actions will only run the tox environments which match the currently
         # running python-version. See [gh-actions] in tox.ini for the mapping
-        python-version: [ "3.10", "3.11", "3.12", "3.13"]
+        python-version: [ "3.10", "3.11", "3.12", "3.13", "3.14", "3.15"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache pip
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('dev-requirements.txt') }}
