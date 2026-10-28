@@ -12,13 +12,12 @@ setup(
     url="https://github.com/vkurup/python-tcxparser/",
     packages=find_packages(include=["tcxparser"]),
     include_package_data=True,
-    license="BSD",
+    license_expression="BSD-2-Clause",
     zip_safe=False,
     keywords="tcx",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
@@ -35,5 +34,4 @@ setup(
         "lxml",
         "python-dateutil",
     ],
-    test_suite="tests",
 )
